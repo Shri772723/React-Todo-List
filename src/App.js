@@ -1,5 +1,7 @@
 import "./App.css";
 import { useState } from "react";
+import TodoForm from "./components/TodoForm";
+import TodoList from "./components/TodoList";
 function App() {
   const [todo, setTodo] = useState("");
   const [todos, setTodos] = useState([]);
@@ -49,22 +51,8 @@ setEditId(id)
         <div className="container">
           <div className="app-things mt-5">
             <h1 className="text-center pt-5">Todo List App</h1> <br />
-            <form action="" className="todoform" onSubmit={handleSubmit}>
-              <input type="text" value={todo} className="input" onChange={onChangeHandler} />
-              <button type="submit">{editId ? 'Edit': 'Add'}</button>
-            </form>
-            <ul className="Alltodo">
-              {todos.map((t) => (
-                <li className="single_todo">
-                  {" "}
-                  <span className="todo_text" key={t.id}>
-                    {t.todo}
-                  </span>{" "}
-                  <button onClick={()=> handleEdit(t.id)}>Edit</button> 
-                  <button onClick={()=> handelDelete(t.id)}>Delete</button>
-                </li>
-              ))}
-            </ul>
+           <TodoForm handleSubmit={handleSubmit} todo={todo} editId={editId} setTodo={setTodo} onChangeHandler={onChangeHandler}/>
+           <TodoList handleEdit={handleEdit} handelDelete={handelDelete} todos={todos} />
           </div>
         </div>
 
